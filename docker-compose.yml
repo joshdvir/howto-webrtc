@@ -1,0 +1,8 @@
+webrtc:
+  build: .
+  command: tail -f /dev/null
+  dockerfile: Dockerfile
+  ports:
+  - "3111:3000"
+  volumes:
+  - .:/app

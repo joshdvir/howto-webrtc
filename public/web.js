@@ -39,7 +39,9 @@ function showVideoCall() {
 let otherPerson;
 
 const username = prompt("What's your name?", `user${Math.floor(Math.random() * 100)}`);
-const socketUrl = `ws://${location.host}/ws`;
+console.log(location.protocol)
+const schema = location.protocol == 'https:' ? 'wss' : 'ws'
+const socketUrl = `${schema}://${location.host}/ws`;
 const socket = new WebSocket(socketUrl);
 
 /**
@@ -145,7 +147,7 @@ webrtc.addEventListener("track", (event) => {
 
 navigator
   .mediaDevices
-  .getUserMedia({ video: true })
+  .getUserMedia({ video: true, audio: true })
   .then((localStream) => {
     /** @type {HTMLVideoElement} */
     const localVideo = document.getElementById("local-video");
